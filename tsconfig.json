@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "lib": ["ESNext"],
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "paths": {
+    "@constants": ["./const"],
+    "@enums": ["./enums"],
+    "@types": ["./types"],
+    "@utils": ["./utils"]
+  },
+  "include": [
+    "**/*.ts",
+    "tests/*.ts",
+    "pages/*.ts",
+    "const/*.ts",
+    "enums/*.ts",
+    "types/*.ts",
+    "utils/*.ts",
+    "eslint.config.mjs"
+  ]
+}
