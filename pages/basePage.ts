@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class BasePage{
     readonly page: any;
@@ -7,8 +7,8 @@ export class BasePage{
         this.page = page
     }
 
-    async navigate(path: string ="" ){
-        await this.page.goto("/${path")
+    async navigate(path: string ='' ){
+        await this.page.goto('/${path')
     }
 
     async getTitle(){
@@ -16,6 +16,10 @@ export class BasePage{
     }
 
     async waitForPageLoad(){
-        await this.page.waitForLoadState("load")
+        await this.page.waitForLoadState('load')
+    }
+
+    async isTextVisible(element: string, text: string): Promise<boolean>{
+       return await this.page.locator(element).filter({hasText: text})
     }
 }

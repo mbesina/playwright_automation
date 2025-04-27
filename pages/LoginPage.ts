@@ -9,7 +9,7 @@ export class LoginPage extends BasePage{
   constructor(page: Page) {
     super(page)
     this.usernameField = this.page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address')
-    this.passwordField = this.page.getByRole("textbox", {name: 'Password'})
+    this.passwordField = this.page.getByRole('textbox', {name: 'Password'})
     this.loginLink = this.page.getByRole('button', { name: 'Login' })
 
   }

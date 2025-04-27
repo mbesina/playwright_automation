@@ -8,34 +8,34 @@ import { email, invalidUser, password } from '../const'
     const loginPage = new LoginPage(page)
 
     await homePage.navigateToHomepage()
-    expect(await homePage.getTitle()).toEqual("Automation Exercise")
+    expect(await homePage.getTitle()).toEqual('Automation Exercise')
     expect(await homePage.headingValue()).toBeTruthy()
     
     await homePage.clickLoginLink()
-    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
+    expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
 
     await loginPage.login(email, password)
-    expect(await homePage.getTitle()).toEqual("Automation Exercise")
+    expect(await homePage.getTitle()).toEqual('Automation Exercise')
     expect(await homePage.headingValue()).toBeTruthy()
     await expect(homePage.logoutLink).toBeVisible()
 
     await homePage.clickLogoutButton()
-    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
+    expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
   })
 
-  test("Login with invalid credentials", async ({page}) =>{
+  test('Login with invalid credentials', async ({page}) =>{
     const homePage = new HomePage(page)
     const loginPage = new LoginPage(page)
 
     await homePage.navigateToHomepage()
-    expect(await homePage.getTitle()).toEqual("Automation Exercise")
+    expect(await homePage.getTitle()).toEqual('Automation Exercise')
 
     await homePage.clickLoginLink()
-    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
+    expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
 
     await loginPage.login(invalidUser.emailAddress, invalidUser.randomPassword)
-    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
-    await expect(page.locator("p").filter({hasText: 'Your email or password is incorrect!'})).toBeVisible()
+    expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
+    await loginPage.isTextVisible('p', 'Your email or password is incorrect!')
   })
 
 

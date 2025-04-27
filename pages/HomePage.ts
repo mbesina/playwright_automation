@@ -1,5 +1,5 @@
-import { Locator, Page } from "@playwright/test";
-import { BasePage } from "./basePage";
+import { Locator, Page } from '@playwright/test';
+import { BasePage } from './basePage';
 
 export class HomePage extends BasePage{
     readonly homepageHeading: Locator
@@ -8,8 +8,8 @@ export class HomePage extends BasePage{
 
     constructor(page:Page){
         super(page)
-        this.homepageHeading = this.page.getByRole("heading", {name:"AutomationExercise"})
-        this.loginLink = this.page.getByRole('link', {name: " Signup / Login"})
+        this.homepageHeading = this.page.getByRole('heading', {name:'AutomationExercise'})
+        this.loginLink = this.page.getByRole('link', {name: ' Signup / Login'})
         this.logoutLink = this.page.getByRole('link').filter({ hasText: 'Logout' })
     }
 
