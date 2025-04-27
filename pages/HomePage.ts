@@ -25,4 +25,9 @@ export class HomePage extends BasePage{
         await this.loginButton.click()
         await this.waitForPageLoad()
     }
+
+    async clickLogoutButton(){
+        await this.logoutLink.click()
+        await this.waitForPageLoad()
+    }
 }
