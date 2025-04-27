@@ -4,7 +4,7 @@
   "description": "Playwright Automation",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
+    "e2eTest": "npx playwright test --project=testChromium",
     "lint": "eslint .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,md}'"
   },
@@ -14,18 +14,21 @@
   "author": "May Besina",
   "license": "ISC",
   "dependencies": {
-    "@playwright/test": "^1.48.2",
-    "@types/chance": "^1.1.6",
-    "chance": "^1.1.12"
+    "@playwright/test": "^1.48.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.15.0",
+    "@types/chance": "^1.1.6",
+    "chance": "^1.1.12",
+    "@types/node": "^22.15.2",
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typescript-eslint/parser": "^8.14.0",
+    "dotenv": "^16.5.0",
     "eslint-plugin-playwright": "^2.0.1",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.12.0"
+    "globals": "^15.12.0",
+    "ts-node": "3.2.2"
   },
   "type": "module"
 }

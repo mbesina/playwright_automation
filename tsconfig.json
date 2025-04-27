@@ -13,15 +13,5 @@
     "@enums": ["./enums"],
     "@types": ["./types"],
     "@utils": ["./utils"]
-  },
-  "include": [
-    "**/*.ts",
-    "tests/*.ts",
-    "pages/*.ts",
-    "const/*.ts",
-    "enums/*.ts",
-    "types/*.ts",
-    "utils/*.ts",
-    "eslint.config.mjs"
-  ]
+  }
 }

@@ -1,23 +1,22 @@
 import { test, expect } from '@playwright/test'
-import { LoginSteps } from '../steps/LoginSteps'
-import { loginData } from '../const/loginData.const'
+import { HomePage } from '../pages/HomePage'
+import { LoginPage } from '../pages/LoginPage'
+import { email, password } from '../const'
 
-// test without POM structure
-test('First test', async ({ page }) => {
-  await page.goto('/')
-  const formTitle = await page.locator('h4')
-  await expect(formTitle).toContainText('Login Form')
-})
-
-//  Test with POM structure
-// any password can be used for valid login on the test website, hence, Chance libray
-// is used to incorporate random string generation
-test.describe('Login', () => {
   test('Login with valid credentials', async ({ page }) => {
-    const loginSteps = new LoginSteps(page)
-    await loginSteps.login(
-      loginData.validUser.username,
-      loginData.validUser.randomPassword,
-    )
+    const homepage = new HomePage(page)
+    const loginPage = new LoginPage(page)
+
+    await homepage.navigateToHomepage()
+    expect(await homepage.getTitle()).toEqual("Automation Exercise")
+    expect(await homepage.headingValue()).toBeTruthy()
+    
+    await homepage.clickLoginButton()
+    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
+
+    await loginPage.login(email, password)
+    expect(await homepage.getTitle()).toEqual("Automation Exercise")
+    expect(await homepage.headingValue()).toBeTruthy()
+    await expect(homepage.logoutLink).toBeVisible()
+   
   })
-})

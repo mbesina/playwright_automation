@@ -7,3 +7,6 @@ export const loginData = {
     randomPassword: chance.string({ length: 8 }),
   },
 }
+
+export const email = process.env.EMAIL!;
+export const password = process.env.PASSWORD!;
