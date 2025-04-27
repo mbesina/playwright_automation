@@ -1,24 +1,42 @@
 import { test, expect } from '@playwright/test'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
-import { email, password } from '../const'
+import { email, invalidUser, password } from '../const'
 
   test('Login with valid credentials', async ({ page }) => {
-    const homepage = new HomePage(page)
+    const homePage = new HomePage(page)
     const loginPage = new LoginPage(page)
 
-    await homepage.navigateToHomepage()
-    expect(await homepage.getTitle()).toEqual("Automation Exercise")
-    expect(await homepage.headingValue()).toBeTruthy()
+    await homePage.navigateToHomepage()
+    expect(await homePage.getTitle()).toEqual("Automation Exercise")
+    expect(await homePage.headingValue()).toBeTruthy()
     
-    await homepage.clickLoginButton()
+    await homePage.clickLoginLink()
     expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
 
     await loginPage.login(email, password)
-    expect(await homepage.getTitle()).toEqual("Automation Exercise")
-    expect(await homepage.headingValue()).toBeTruthy()
-    await expect(homepage.logoutLink).toBeVisible()
+    expect(await homePage.getTitle()).toEqual("Automation Exercise")
+    expect(await homePage.headingValue()).toBeTruthy()
+    await expect(homePage.logoutLink).toBeVisible()
 
-    await homepage.clickLogoutButton()
+    await homePage.clickLogoutButton()
     expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
   })
+
+  test("Login with invalid credentials", async ({page}) =>{
+    const homePage = new HomePage(page)
+    const loginPage = new LoginPage(page)
+
+    await homePage.navigateToHomepage()
+    expect(await homePage.getTitle()).toEqual("Automation Exercise")
+
+    await homePage.clickLoginLink()
+    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
+
+    await loginPage.login(invalidUser.emailAddress, invalidUser.randomPassword)
+    expect(await loginPage.getTitle()).toEqual("Automation Exercise - Signup / Login")
+    await expect(page.locator("p").filter({hasText: 'Your email or password is incorrect!'})).toBeVisible()
+  })
+
+
+  

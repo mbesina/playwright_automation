@@ -3,13 +3,13 @@ import { BasePage } from "./basePage";
 
 export class HomePage extends BasePage{
     readonly homepageHeading: Locator
-    readonly loginButton: Locator
+    readonly loginLink: Locator
     readonly logoutLink: Locator
 
     constructor(page:Page){
         super(page)
         this.homepageHeading = this.page.getByRole("heading", {name:"AutomationExercise"})
-        this.loginButton = this.page.getByRole('link', {name: " Signup / Login"})
+        this.loginLink = this.page.getByRole('link', {name: " Signup / Login"})
         this.logoutLink = this.page.getByRole('link').filter({ hasText: 'Logout' })
     }
 
@@ -21,8 +21,8 @@ export class HomePage extends BasePage{
         return await this.homepageHeading.isVisible()
     }
 
-    async clickLoginButton(){
-        await this.loginButton.click()
+    async clickLoginLink(){
+        await this.loginLink.click()
         await this.waitForPageLoad()
     }
 
