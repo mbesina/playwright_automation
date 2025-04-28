@@ -19,7 +19,7 @@ import { validUserEmail, invalidUser, validPassword } from '../const'
     expect(await homePage.headingValue()).toBeTruthy()
     await expect(homePage.logoutLink).toBeVisible()
 
-    await homePage.clickLogoutButton()
+    await homePage.clickLogoutLink()
     expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
   })
 
