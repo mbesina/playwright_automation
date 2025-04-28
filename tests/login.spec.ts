@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
-import { email, invalidUser, password } from '../const'
+import { validUserEmail, invalidUser, validPassword } from '../const'
 
   test('Login with valid credentials', async ({ page }) => {
     const homePage = new HomePage(page)
@@ -14,7 +14,7 @@ import { email, invalidUser, password } from '../const'
     await homePage.clickLoginLink()
     expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
 
-    await loginPage.login(email, password)
+    await loginPage.login(validUserEmail, validPassword)
     expect(await homePage.getTitle()).toEqual('Automation Exercise')
     expect(await homePage.headingValue()).toBeTruthy()
     await expect(homePage.logoutLink).toBeVisible()
@@ -35,7 +35,7 @@ import { email, invalidUser, password } from '../const'
 
     await loginPage.login(invalidUser.emailAddress, invalidUser.randomPassword)
     expect(await loginPage.getTitle()).toEqual('Automation Exercise - Signup / Login')
-    await loginPage.isTextVisible('p', 'Your email or password is incorrect!')
+    expect(await loginPage.isTextVisible('p', 'Email Address already exist!')).toBeTruthy()
   })
 
 
